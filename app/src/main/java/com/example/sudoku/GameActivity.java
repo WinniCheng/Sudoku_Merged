@@ -56,6 +56,7 @@ public class GameActivity extends MenuClass {
         Log.i(TAG, Boolean.toString(musicOn));
         if (musicOn) {
             mediaPlayer.start();
+            mediaPlayer.setLooping(true);
         }
     }
 
