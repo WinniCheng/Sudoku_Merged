@@ -27,7 +27,8 @@ public abstract class MenuClass extends AppCompatActivity {
         } else if (itemId == R.id.about) {
             new AlertDialog.Builder(this)
                     .setTitle("Sudoku Game")
-                    .setMessage("Sudoku is a logic-based, combinatorial number-placement puzzle..")
+                    .setMessage("\n" +
+                            "Sudoku is played on a grid of 9 x 9 spaces. Each row, column and square needs to be filled out with the numbers 1-9, without repeating any numbers within the row, column or square.")
                     .setNeutralButton(android.R.string.ok, null)
                     .show();
             return true;
