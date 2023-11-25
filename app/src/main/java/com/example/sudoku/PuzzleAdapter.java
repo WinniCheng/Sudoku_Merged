@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class PuzzleAdapter extends RecyclerView.Adapter<PuzzleAdapter.ViewHolder> {
 
     private Context context;
-    private ArrayList<Integer> puzzle;
+    private int[] flatBoard;
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         private final TextView cellView;
@@ -23,7 +23,7 @@ public class PuzzleAdapter extends RecyclerView.Adapter<PuzzleAdapter.ViewHolder
             super(view);
 
             cellView = (TextView) view.findViewById(R.id.puzzle_cell);
-            float width = context.getResources().getDisplayMetrics().widthPixels  / 12;
+            float width = context.getResources().getDisplayMetrics().widthPixels  / 9;
             getCellView().setWidth(Math.round(width));
             getCellView().setHeight(Math.round(width));
         }
@@ -34,9 +34,9 @@ public class PuzzleAdapter extends RecyclerView.Adapter<PuzzleAdapter.ViewHolder
 
     }
 
-    public PuzzleAdapter(Context context, ArrayList<Integer> puzzle) {
+    public PuzzleAdapter(Context context, int[] flatBoard) {
         this.context = context;
-        this.puzzle = puzzle;
+        this.flatBoard = flatBoard;
     }
     @NonNull
     @Override
@@ -62,12 +62,18 @@ public class PuzzleAdapter extends RecyclerView.Adapter<PuzzleAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
-        viewHolder.getCellView().setText(puzzle.get(position).toString());
+        String cellValue = String.valueOf(flatBoard[position]);
+        if (cellValue.equals("0")) {
+            viewHolder.getCellView().setText("");
+            viewHolder.getCellView().setBackgroundColor(R.color.white);
+        } else {
+            viewHolder.getCellView().setText(cellValue);
+        }
     }
 
     @Override
     public int getItemCount() {
-        return puzzle.size();
+        return 81;
     }
 
 }
